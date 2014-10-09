@@ -1,18 +1,22 @@
-// Load required modules
-var http    = require("http");              // http server core module
-var express = require("express");           // web framework external module
-var io      = require("socket.io");         // web socket external module
-var easyrtc = require("easyrtc");           // EasyRTC external module
+var express = require('express')
+    , morgan = require('morgan')
+    , bodyParser = require('body-parser')
+    , methodOverride = require('method-override')
+    , app = express()
+    , port = process.env.PORT || 3000
+    , router = express.Router();
 
-// Setup and configure Express http server. Expect a subfolder called "static" to be the web root.
-var httpApp = express();
-httpApp.use(express.static(__dirname + "/static/"));
+app.use(express.static(__dirname + '/views')); // set the static files location for the static html
+app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
+app.use(morgan('dev'));                     // log every request to the console
+app.use(bodyParser());                      // pull information from html in POST
+app.use(methodOverride());                  // simulate DELETE and PUT
 
-// Start Express http server on port 8080
-var webServer = http.createServer(httpApp).listen(8080);
+router.get('/', function(req, res, next) {
+    res.render('index.html');
+});
 
-// Start Socket.io so it attaches itself to Express server
-var socketServer = io.listen(webServer, {"log level":1});
+app.use('/', router);
 
-// Start EasyRTC server
-var rtc = easyrtc.listen(httpApp, socketServer);
+app.listen(port);
+console.log('App running on port', port);

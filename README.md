@@ -1,32 +1,47 @@
-EasyRTC Server Example
-======================
+Express JS Static Boilerplate
+============================
 
-This folder contains all the files you'll need to create a simple server with EasyRTC, Express, and Socket.io. You can copy these files where you wish.
+Express.js 4.0 Static Boilerplate is a simple Node.js Server using static files and directories for quick quality development and/or production.
 
-Files and Folders:
-------------------
+Features
+-----------
+- Static directory and files
+- Server watch for changes (Nodemon)
+- Grunt JS (Files Watch, CSS min, JS uglify)
+- no Jade
 
- - package.json - Provides project information allowing npm to find and install required modules.
- - server.js - Server code.
- - /static/ - Root folder for web server. Put html files here!
+Usage
+-----------
+On your terminal.
 
- 
-Installing Required Modules:
-----------------------------
+Install the node packages.
+```ruby
+sudo npm install
+```
 
- - Type `npm install` in console.
- - This will read the package.json file to find and install the required modules including EasyRTC, Express, and Socket.io.
- - Required modules will go into a new 'node_modules' subfolder
+Run the server
+```ruby
+nodemon server.js
+```
 
+To watch and run the Grunt.js task on any change to your main files "app.js, app.css"
+```ruby
+grunt watch
+```
 
-Running the Server:
--------------------
+Want to do manually?! no problem.
+```ruby
+grunt build
+```
 
- - Type `node server` in console.
+Open your browser on the address 'localhost:3000'
 
+Done!
 
-Viewing the examples:
----------------------
+Author
+-----------
+Michael Lancaster
 
- - In your WebRTC enabled browser, visit your server address including the port. By default port 8080 is used.
- - http://localhost:8080/
+License
+-----------
+MIT
